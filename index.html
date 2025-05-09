@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <title>만두 클릭 애니메이션</title>
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: #fff;
     }
     img {
       width: 300px;
@@ -25,12 +28,16 @@
   <script>
     const dumpling = document.getElementById("dumpling");
     let frame = 1;
+    let direction = 1; // 1: 먹기, -1: 되돌리기
 
     dumpling.addEventListener("click", () => {
-      if (frame < 3) {
-        frame++;
-        dumpling.src = `https://raw.githubusercontent.com/youbinalice1/mandu-cursor/main/mandu${frame}.PNG`;
+      frame += direction;
+
+      if (frame === 3 || frame === 1) {
+        direction *= -1; // 방향 전환
       }
+
+      dumpling.src = `https://raw.githubusercontent.com/youbinalice1/mandu-cursor/main/mandu${frame}.PNG`;
     });
   </script>
 </body>
